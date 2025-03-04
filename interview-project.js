@@ -50,4 +50,47 @@
   const styleTag = document.createElement('style');
   styleTag.innerHTML = tooltipStyles;
   document.head.appendChild(styleTag);
+
+  // Check if tooltips are enabled
+  let tooltipsEnabled = localStorage.getItem('tooltipsEnabled') === 'true';
+
+  // Attach tooltips to nav links with descriptions from the content map.
+  function attachTooltipsToNavLinks() {
+    const navLinks = document.querySelectorAll('a.nav-link--level-3');
+
+    navLinks.forEach((link) => {
+      const description = getDescription(link.dataset.text);
+
+      if (!description) return;
+
+      // Create a tooltip element
+      const tooltip = document.createElement('div');
+      tooltip.className = 'custom-tooltip';
+      tooltip.innerText = description;
+      link.appendChild(tooltip);
+
+      // Position tooltip above the nav links
+      function positionTooltip() {
+        tooltip.style.top = `-${tooltip.offsetHeight + 5}px`;
+        tooltip.style.left = '0px';
+        tooltip.style.opacity = '1';
+      }
+
+      // Show tooltip on hover
+      ['mouseenter', 'focus'].forEach((event) => {
+        link.addEventListener(event, () => {
+          if (!tooltipsEnabled) return;
+          positionTooltip();
+        });
+      });
+
+      // Hide tooltip on blur
+      ['mouseleave', 'blur'].forEach((event) => {
+        link.addEventListener(event, () => {
+          if (!tooltipsEnabled) return;
+          tooltip.style.opacity = 0;
+        });
+      });
+    });
+  }
 })();
