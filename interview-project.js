@@ -105,7 +105,7 @@
   let tooltipsEnabled = localStorage.getItem('tooltipsEnabled') === 'true';
 
   /**
-   * Creates a global toggle element that can be inserted into the page.
+   * Create a global toggle element that can be inserted into the page.
    * This toggle controls the visibility of all tooltips.
    * @returns {HTMLElement} The toggle container element.
    */
@@ -158,6 +158,19 @@
       }
     });
   }
+
+  // Close the flyout panel when the close button is clicked.
+  const closeButtons = document.querySelectorAll('.nav-back-button');
+  closeButtons.forEach((button) => {
+    button.addEventListener('click', (event) => {
+      const flyoutPanel = event.currentTarget.closest('.nav-submenu.level-2');
+
+      if (flyoutPanel) {
+        //Hide the flyout panel.
+        flyoutPanel.classList.remove('show');
+      }
+    });
+  });
 
   // Initialize everything.
   function init() {
