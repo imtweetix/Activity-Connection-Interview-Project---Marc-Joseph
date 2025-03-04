@@ -143,7 +143,7 @@
   }
 
   // Inserts the global tooltip toggle into each flyout panel.
-  function insertToggleInSubmenus() {
+  function insertToggleInFlyoutPanel() {
     const menuProgramElements = document.querySelectorAll('.menu-programs');
 
     if (menuProgramElements.length === 0) return;
@@ -174,7 +174,7 @@
 
   // Initialize everything.
   function init() {
-    insertToggleInSubmenus();
+    insertToggleInFlyoutPanel();
     attachTooltipsToNavLinks();
   }
 
