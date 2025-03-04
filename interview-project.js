@@ -159,19 +159,6 @@
     });
   }
 
-  // This function adds event listeners to the close buttons in the flyout panel menus.
-  const closeButtons = document.querySelectorAll('.nav-back-button');
-  closeButtons.forEach((button) => {
-    button.addEventListener('click', (event) => {
-      const flyoutPanel = event.currentTarget.closest('.nav-submenu.level-2');
-
-      if (flyoutPanel) {
-        //Hide the flyout panel.
-        flyoutPanel.classList.remove('show');
-      }
-    });
-  });
-
   // Initialize everything.
   function init() {
     insertToggleInSubmenus();
