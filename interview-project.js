@@ -174,7 +174,7 @@
 
   // Initialize everything.
   function init() {
-    insertToggleInFlyoutPanel();
+    insertToggleInFlyoutPanels();
     attachTooltipsToNavLinks();
   }
 
