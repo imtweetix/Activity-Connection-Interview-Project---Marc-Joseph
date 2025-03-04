@@ -4,6 +4,50 @@
   // Fetch the content map from the static URL
   const url = 'https://interview.actcon.info/static/content_map.json';
   const contentMapResponse = await fetch(url);
+
   // Parse the JSON response
   const contentMap = await contentMapResponse.json();
+
+  // A CSS string that defines the styles for tooltips and the toggle to enable them.
+  const tooltipStyles = `
+        a.nav-link--level-3 {
+            position: relative;
+        }
+        .custom-tooltip {
+            position: absolute;
+            background: #103B7E; /* Dark Cornflower */
+            color: #fff;
+            padding: 6px 10px;
+            border-radius: 8px;
+            font-size: .75rem;
+            text-wrap: balance;
+            z-index: 1000;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.2s ease-in-out;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+            width: 100%;
+        }
+        .tooltip-toggle-container {
+            position: absolute;
+            right: 30px;
+            color: #1a0d3f; /* Royal Abyss */
+            font-size: .75rem;
+            cursor: pointer;
+        }
+        .tooltip-toggle-container label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .tooltip-toggle-container input {
+            cursor: pointer;
+            accent-color: #1A5CC7; /* Denim */
+        }
+    `;
+
+  // Inject styles into the page
+  const styleTag = document.createElement('style');
+  styleTag.innerHTML = tooltipStyles;
+  document.head.appendChild(styleTag);
 })();
